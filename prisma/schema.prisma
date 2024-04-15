@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  user_id      Int            @unique @default(autoincrement())
+  first_name   String
+  last_name    String
+  last_update  DateTime
+  Notification Notification[]
+
+  @@map("user")
+}
+
+model Notification {
+  notification_id Int      @unique @default(autoincrement())
+  title           String
+  message         String
+  last_update     DateTime
+  user            User     @relation(fields: [user_id], references: [user_id])
+  user_id         Int
+
+  @@map("notification")
+}
