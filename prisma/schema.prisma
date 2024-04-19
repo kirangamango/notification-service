@@ -22,8 +22,8 @@ model Notification {
   title           String
   message         String
   last_update     DateTime
-  user            User     @relation(fields: [user_id], references: [user_id])
   user_id         Int
+  user            User     @relation(fields: [user_id], references: [user_id])
 
   @@map("notification")
 }
